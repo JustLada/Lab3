@@ -1,0 +1,89 @@
+#include <iostream>
+#include <stack>
+using namespace std;
+#define MAX 1000
+class Node {
+public:
+    int data;
+    Node *next;
+};
+
+class Stack{
+    private:
+        Node *top;
+
+    public:
+        int a[MAX];
+        bool push(int data);
+        int pop();
+        int peek();
+        bool isEmpty();
+        int size = 0;
+        int sizee();
+};
+bool Stack::push(int data)
+{
+    Node *temp = new Node();
+
+    if (!temp)
+    {
+        cout << "\nStack is full";
+        exit(0);
+    }
+    if (top == nullptr)
+    {
+        temp->data = data;
+        top = temp;
+        top->next = nullptr;
+    }
+    else
+    {
+        temp->data = data;
+        temp->next = top;
+        top = temp;
+    }
+    cout<< data << " pushed to Stack!\n";
+    size++;
+}
+int Stack::pop() {
+   if(top==nullptr)
+   cout<<"Stack Underflow"<<endl;
+   else {
+      cout<<"The popped element is "<< top->data <<endl;
+      top = top->next;
+      size--;
+   }
+}
+bool Stack::isEmpty()
+{
+    if (top == nullptr)
+    cout<<"Stack is empty"<<endl;
+    else
+    cout<<"Stack is not empty"<<endl;
+    
+}
+int Stack::peek()
+{
+    return top->data;
+}
+int Stack::sizee(){
+    return size;
+}
+
+int main()
+{
+    class Stack s;
+    s.isEmpty();
+    s.push(10);
+    s.push(20);
+    s.push(35);
+    s.push(50);
+    cout<< s.peek() << " is top of the stack\n";
+    cout<< s.sizee() << " is the size of the stack\n";
+    s.pop();
+    cout<< s.peek() << " is top of the stack\n";
+    s.isEmpty();
+    cout<< s.sizee() << " is the size of the stack\n";
+
+    return 0;
+}
